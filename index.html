@@ -1,14 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>NCT WISH Personality Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Which NCT WISH Member Are You?</title>
 </head>
 
 <body>
 
-    <h1>Which NCT WISH member suits your personality?</h1>
+    <main class="quiz-container">
 
-    <p>My first ever website!</p>
+        <section id="welcome-screen">
+            <h1>Which NCT WISH Member Suits Your Personality?</h1>
+
+            <p>
+                Answer 24 questions and find out which NCT WISH
+                members' personalities match yours!
+            </p>
+
+            <button id="start-button">START QUIZ</button>
+        </section>
+
+        <section id="quiz-screen" style="display: none;">
+
+            <p id="question-number">Question 1 of 24</p>
+
+            <h2 id="question-text">
+                Question goes here
+            </h2>
+
+            <div id="answer-buttons">
+                <!-- Answer buttons will appear here -->
+            </div>
+
+        </section>
+
+        <section id="result-screen" style="display: none;">
+
+            <h2>Your NCT WISH Personality</h2>
+
+            <div id="results">
+                <!-- Results will appear here -->
+            </div>
+
+            <button id="restart-button">TAKE QUIZ AGAIN</button>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
 
 </body>
-</html
+</html>
