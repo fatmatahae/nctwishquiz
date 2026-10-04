@@ -224,14 +224,72 @@ const questions = [
 ];
 
 let personality = {
-    social: 0,
-    warmth: 0,
-    playful: 0,
-    observant: 0,
-    drive: 0,
-    emotional: 0,
-    spontaneous: 0,
-    group: 0
+ const members = {
+    SION: {
+        social: 55,
+        warmth: 85,
+        playful: 65,
+        observant: 90,
+        drive: 90,
+        emotional: 65,
+        spontaneous: 40,
+        group: 95
+    },
+
+    RIKU: {
+        social: 75,
+        warmth: 80,
+        playful: 90,
+        observant: 65,
+        drive: 75,
+        emotional: 70,
+        spontaneous: 85,
+        group: 80
+    },
+
+    YUSHI: {
+        social: 40,
+        warmth: 85,
+        playful: 60,
+        observant: 95,
+        drive: 90,
+        emotional: 65,
+        spontaneous: 35,
+        group: 70
+    },
+
+    JAEHEE: {
+        social: 60,
+        warmth: 95,
+        playful: 55,
+        observant: 90,
+        drive: 95,
+        emotional: 75,
+        spontaneous: 35,
+        group: 95
+    },
+
+    RYO: {
+        social: 75,
+        warmth: 90,
+        playful: 75,
+        observant: 65,
+        drive: 90,
+        emotional: 70,
+        spontaneous: 70,
+        group: 85
+    },
+
+    SAKUYA: {
+        social: 85,
+        warmth: 75,
+        playful: 100,
+        observant: 50,
+        drive: 65,
+        emotional: 80,
+        spontaneous: 100,
+        group: 80
+    }
 };
 
 let currentQuestion = 0;
