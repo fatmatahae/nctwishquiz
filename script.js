@@ -370,32 +370,67 @@ function finishQuiz() {
     quizScreen.style.display = "none";
     resultScreen.style.display = "block";
 
-    const labels = {
-        social: "Social Energy",
-        warmth: "Warmth",
-        playful: "Playfulness",
-        observant: "Observance",
-        drive: "Drive",
-        emotional: "Emotional Expression",
-        spontaneous: "Spontaneity",
-        group: "Group Role"
-    };
-
-    let resultHTML = "<h3>Your personality scores:</h3>";
+    // Find the maximum possible score for each category
+    const maxScores = {};
 
     categories.forEach(category => {
+        maxScores[category] = questions.reduce((total, question) => {
+            const highestScore = Math.max(
+                ...question.answers.map(answer => answer.scores[category] || 0)
+            );
+
+            return total + highestScore;
+        }, 0);
+    });
+
+    // Turn the user's scores into percentages
+    const userProfile = {};
+
+    categories.forEach(category => {
+        userProfile[category] =
+            (personality[category] / maxScores[category]) * 100;
+    });
+
+    // Compare the user's personality to each member
+    const results = Object.entries(members).map(([member, profile]) => {
+        let difference = 0;
+
+        categories.forEach(category => {
+            difference += Math.abs(
+                userProfile[category] - profile[category]
+            );
+        });
+
+        const similarity =
+            100 - (difference / categories.length);
+
+        return {
+            member: member,
+            percentage: Math.round(similarity)
+        };
+    });
+
+    // Put the highest match first
+    results.sort((a, b) => b.percentage - a.percentage);
+
+    const closestMatch = results[0];
+
+    let resultHTML = `
+        <h2>Your closest match is...</h2>
+        <h1>${closestMatch.member}</h1>
+        <h3>${closestMatch.percentage}% match</h3>
+
+        <h3>All your matches:</h3>
+    `;
+
+    results.forEach(result => {
         resultHTML += `
-            <p>${labels[category]}: ${personality[category]}</p>
+            <p>
+                <strong>${result.member}</strong>
+                — ${result.percentage}%
+            </p>
         `;
     });
 
-    document.getElementById("results").innerHTML = `
-        <p>You've completed all ${questions.length} questions!</p>
-        ${resultHTML}
-    `;
+    document.getElementById("results").innerHTML = resultHTML;
 }
-
-document.getElementById("restart-button").addEventListener("click", () => {
-    resultScreen.style.display = "none";
-    welcomeScreen.style.display = "block";
-});
