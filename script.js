@@ -223,8 +223,7 @@ const questions = [
     }
 ];
 
-let personality = {
- const members = {
+const members = {
     SION: {
         social: 55,
         warmth: 85,
@@ -292,6 +291,16 @@ let personality = {
     }
 };
 
+let personality = {
+    social: 0,
+    warmth: 0,
+    playful: 0,
+    observant: 0,
+    drive: 0,
+    emotional: 0,
+    spontaneous: 0,
+    group: 0
+};
 let currentQuestion = 0;
 
 const welcomeScreen = document.getElementById("welcome-screen");
