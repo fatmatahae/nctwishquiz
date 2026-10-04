@@ -415,22 +415,47 @@ function finishQuiz() {
 
     const closestMatch = results[0];
 
-    let resultHTML = `
-        <h2>Your closest match is...</h2>
-        <h1>${closestMatch.member}</h1>
-        <h3>${closestMatch.percentage}% match</h3>
-
-        <h3>All your matches:</h3>
-    `;
+    // Create the member match list
+    let matchesHTML = "";
 
     results.forEach(result => {
-        resultHTML += `
-            <p>
-                <strong>${result.member}</strong>
-                — ${result.percentage}%
-            </p>
+        matchesHTML += `
+            <div class="match">
+                <div class="match-name">
+                    <strong>${result.member}</strong>
+                    <span>${result.percentage}%</span>
+                </div>
+
+                <div class="match-bar">
+                    <div class="match-fill" style="width: ${result.percentage}%"></div>
+                </div>
+            </div>
         `;
     });
 
-    document.getElementById("results").innerHTML = resultHTML;
+    // Create the result page
+    document.getElementById("results").innerHTML = `
+        <div class="main-match">
+            <p class="result-label">YOUR NCT WISH MATCH</p>
+
+            <h2>${closestMatch.member}</h2>
+
+            <p class="match-percentage">
+                ${closestMatch.percentage}% MATCH
+            </p>
+
+            <div class="big-match-bar">
+                <div
+                    class="big-match-fill"
+                    style="width: ${closestMatch.percentage}%"
+                ></div>
+            </div>
+        </div>
+
+        <div class="all-matches">
+            <h3>ALL YOUR MATCHES</h3>
+
+            ${matchesHTML}
+        </div>
+    `;
 }
